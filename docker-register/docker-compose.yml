@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  registry:
+    restart: always
+    image: registry:2
+    volumes:
+      - ./data:/var/lib/registry
+
+#  ldap:
+#    restart: always
+#    image: osixia/openldap:latest
+
+  nginx:
+    restart: always
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx
+

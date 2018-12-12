@@ -1,0 +1,9 @@
+{
+    "server": "0.0.0.0",
+    "server_port": 1445,
+    "password": "mypassword",
+    "method": "chacha20",
+    "plugin":"obfs-server",
+    "plugin_opts":"obfs=http",
+    "timeout": 60
+}

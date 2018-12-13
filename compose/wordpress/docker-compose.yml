@@ -23,11 +23,16 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
 
   nginx:
-    image: jd1.ir0.cn/anhk/nginx:latest
+    image: ir0cn/nginx:latest
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./ngxcfg:/etc/nginx
+      - ./certs:/etc/nginx/certs
     restart: always
+    environment:
+      SERVER_NAME: ir0.cn,*.ir0.cn
+      PROXY_BACKEND: wordpress
+
+
 

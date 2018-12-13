@@ -13,10 +13,13 @@ services:
 
   nginx:
     restart: always
-    image: nginx:latest
+    image: ir0cn/nginx:latest
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx:/etc/nginx
+      - ./certs:/etc/nginx/certs
+    environment:
+      SERVER_NAME: ir0.cn,*.ir0.cn
+      PROXY_BACKEND: registry:5000
 

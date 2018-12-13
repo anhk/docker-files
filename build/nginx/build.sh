@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build . -t anhk/nginx
+docker build . -t ir0cn/nginx

@@ -13,13 +13,19 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/* && \
   chown -R www-data:www-data /var/lib/nginx
 
+RUN rm -fr /etc/nginx && mkdir -p /etc/nginx/certs
+
+ADD ./entrypoint.sh /entrypoint.sh
+ADD ./nginx.conf /etc/nginx/nginx.conf
+
 # Define mountable directories.
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+VOLUME ["/etc/nginx/certs", "/var/log/nginx", "/var/www/html"]
 
 # Define working directory.
 WORKDIR /etc/nginx
 
 # Define default command.
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
 
 # Expose ports.

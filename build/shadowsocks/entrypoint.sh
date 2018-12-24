@@ -16,7 +16,7 @@ if [ -z "$SS_PASSWORD" ]; then
 fi
 
 if [ -z "$OBFS_OPTS" ]; then
-    OBFS_OPTS=tls
+    OBFS_OPTS="tls;obfs-host=www.bing.com"
     echo -e "[Entrypint] \033[32m\$OBFS_OPTS\033[0m Using default obfs-opts: \033[31m tls \033[0m"
 fi
 

@@ -6,4 +6,4 @@ RUN apt-get update && apt-get -t jessie-backports install -y minidlna
 
 ADD entrypoint.sh /entrypoint.sh
 
-CMD ["/run.sh"]
+CMD ["/entrypoint.sh"]

@@ -1,0 +1,18 @@
+
+version: "2"
+
+services:
+  hostapd:
+    build: ./hostapd
+    restart: always
+    network_mode: "host"
+    volumes:
+      - /sys:/sys
+      - /dev:/dev
+    environment:
+      - INTERFACE: wlo1
+      - SUBNET: 182.168.0.0
+      - AP_ADDR: 182.168.0.1
+      - SSID: anhk-ap
+      - WPA_PASSPHRASE: MyPassword
+

@@ -15,12 +15,19 @@ if [ -z "$SS_PASSWORD" ]; then
     echo -e "[Entrypint] \033[32m\$SS_PASSWORD\033[0m Using Random Password: \033[31m $SS_PASSWORD \033[0m"
 fi
 
+if [ -z "$OBFS_OPTS" ]; then
+    OBFS_OPTS="obfs=tls;obfs-host=www.bing.com"
+    echo -e "[Entrypint] \033[32m\$OBFS_OPTS\033[0m Using default obfs-opts: \033[31m tls \033[0m"
+fi
+
 cat > /etc/ssconfig/ss.json << EOF
 {
     "server": "0.0.0.0",
     "server_port": $SS_PORT,
     "password": "$SS_PASSWORD",
     "method": "$SS_METHOD",
+    "plugin":"obfs-server",
+    "plugin_opts":"obfs=$OBFS_OPTS",
     "timeout": 60
 }
 EOF

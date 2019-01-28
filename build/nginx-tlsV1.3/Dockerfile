@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:latest as build
 
 LABEL maintainer="anhk@anhk.cc"
 
@@ -34,14 +34,16 @@ RUN set -x \
     && make \
     && make install
 
-RUN apt-get -y remove wget build-essential libpcre3-dev zlib1g-dev unzip git
-RUN apt-get -y autoremove
-RUN apt-get clean &&  rm -rf /var/lib/apt/lists/*
-RUN rm -fr nginx-1.15.8 nginx-1.15.8.tar.gz nginx-ct.zip nginx-ct-1.3.2 ngx_brotli openssl
+FROM ubuntu:latest
+COPY --from=build /usr/sbin/nginx /usr/sbin/nginx
+COPY --from=build /etc/nginx /etc/nginx
 
-RUN useradd nginx
-RUN mkdir -p /var/cache/nginx
-RUN mkdir -p /var/www/html
+#RUN apt-get -y remove wget build-essential libpcre3-dev zlib1g-dev unzip git
+#RUN apt-get -y autoremove
+#RUN apt-get clean &&  rm -rf /var/lib/apt/lists/*
+#RUN rm -fr nginx-1.15.8 nginx-1.15.8.tar.gz nginx-ct.zip nginx-ct-1.3.2 ngx_brotli openssl
+
+RUN useradd nginx && mkdir -p /var/cache/nginx /var/www/html /usr/lib/nginx/modules /var/log/nginx/
 
 EXPOSE 80 443
 

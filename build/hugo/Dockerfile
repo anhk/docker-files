@@ -8,6 +8,6 @@ ADD ./config.yml /site/config.yml
 VOLUME ["/site/content"]
 WORKDIR /site/
 
-CMD ["/bin/hugo", "server", "--bind", "0.0.0.0", "-p", "80", "--appendPort=false", "--baseUrl=https://ssl.ir0.cn/"]
+CMD ["/bin/hugo", "server", "--bind", "0.0.0.0", "-p", "80", "--appendPort=false", "--disableLiveReload=true", "--baseUrl=https://ssl.ir0.cn/"]
 
 EXPOSE 80

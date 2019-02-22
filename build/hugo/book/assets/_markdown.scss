@@ -55,21 +55,21 @@ $block-border-radius: 0.15rem;
   }
 
   table {
-    font-size: 15px;
+    font-size: $font-size-14;
     color: #333333;
-    border: 1px solid #666666;
+    border: $padding-1 solid $gray-300;
     border-collapse: collapse;
   }
 
   table th {
-    padding: 8px;
-    border: 1px solid #666666;
-    background-color: #dedede;
+    padding: $padding-8;
+    border: $padding-1 solid $gray-300;
+    background-color: $gray-100;
   }
 
   table td {
-    padding: 8px;
-    border: 1px solid #666666;
-    background-color: #ffffff;
+    padding: $padding-8;
+    border: $padding-1 solid $gray-300;
+    background-color: $white;
   }
 }

@@ -18,7 +18,7 @@ $block-border-radius: 0.15rem;
   b, optgroup, strong {
     font-weight: 700;
   }
-  
+
   a {
     text-decoration: none;
 
@@ -54,7 +54,22 @@ $block-border-radius: 0.15rem;
     :last-child { margin-bottom: 0; }
   }
 
-  table tr td {
-    padding: $padding-8;
+  table {
+    font-size: 15px;
+    color: #333333;
+    border: 1px solid #666666;
+    border-collapse: collapse;
+  }
+
+  table th {
+    padding: 8px;
+    border: 1px solid #666666;
+    background-color: #dedede;
+  }
+
+  table td {
+    padding: 8px;
+    border: 1px solid #666666;
+    background-color: #ffffff;
   }
 }

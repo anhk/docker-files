@@ -5,6 +5,7 @@ $padding-16: 1rem;
 
 $font-size-base: 16px;
 $font-size-12: 0.75rem;
+$font-size-13: 13px;
 $font-size-14: 0.875rem;
 $font-size-16: 1rem;
 
@@ -21,6 +22,8 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black: #000;
 
+$pink: #f7e5e5;
+
 $color-link: #004ed0;
 $color-visited-link: #8440f1;
 
@@ -33,11 +36,11 @@ $nav-background: $body-background;
 $nav-link-color: $gray-800;
 
 $header-height: 3.5rem;
-$menu-width: 14rem;
-$toc-width: 12rem;
+$menu-width: 18rem;
+$toc-width: 14rem;
 
 $container-min-width: $body-min-width;
-$container-max-width: 80rem;
+$container-max-width: 85rem;
 
 $sm-breakpoint: $menu-width + $body-min-width;
 $md-breakpoint: $sm-breakpoint + $toc-width;

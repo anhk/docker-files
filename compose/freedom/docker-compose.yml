@@ -1,0 +1,34 @@
+
+version: "2"
+
+services:
+  hostapd:
+    build: ./hostapd
+    restart: always
+    privileged: true
+    network_mode: "host"
+    container_name: ap-hostapd
+    environment:
+      - INTERFACE=wlo1
+      - SUBNET=182.168.0.0
+      - AP_ADDR=182.168.0.1
+      - SSID=anhk-ap
+      - WPA_PASSPHRASE=1937asdfA
+
+  dnsmasq:
+    build: ./dnsmasq
+    restart: always
+    container_name: ap-dnsmasq
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /etc/resolv.conf:/etc/resolv.conf:ro
+
+  #chinadns
+
+  #ss-redir:
+
+  #ss-local:

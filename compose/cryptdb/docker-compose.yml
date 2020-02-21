@@ -1,0 +1,18 @@
+
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql-server
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: cryptdb
+      MYSQL_USER: cryptdb
+      MYSQL_PASSWORD: cryptdb
+
+  cryptdb:
+    build: ./cryptdb
+    restart: always
+    container_name: mysql-proxy

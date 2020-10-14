@@ -1,0 +1,22 @@
+version: '2.2'
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.7.2
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=anhk-cluster
+      - xpack.security.enabled=true
+    ports:
+      - 9300:9300
+  es02:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.7.2
+    container_name: es02
+    environment:
+      - node.name=es02
+      - cluster.name=anhk-cluster
+      - xpack.security.enabled=true
+      - "discovery.zen.ping.unicast.hosts=es01"
+    ports:
+      - 9301:9300
+

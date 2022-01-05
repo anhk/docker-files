@@ -7,7 +7,7 @@ clusters:
 contexts:
 - context:
     cluster: kubernetes
-    namespace: skywing
+    namespace: ir0cn
     user: crd-admin
   name: kubernetes
 current-context: kubernetes

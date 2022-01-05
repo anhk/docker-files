@@ -19,8 +19,3 @@ ENTRYPOINT [ "/entry.sh" ]
 
 CMD [ "/bin/bash" ]
 
-
-
-
-
-

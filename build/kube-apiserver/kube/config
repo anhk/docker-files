@@ -1,0 +1,19 @@
+apiVersion: v1
+clusters:
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://127.0.0.1:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: skywing
+    user: crd-admin
+  name: kubernetes
+current-context: kubernetes
+kind: Config
+preferences: {}
+users:
+- name: crd-admin
+  user:
+    token: e52f4d35659f364a5b119c1ab5b5b062

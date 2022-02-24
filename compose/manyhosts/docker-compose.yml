@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  ubuntu-sshd:
+    build:
+      context: .
+      dockerfile: dockerfile.ubuntu-sshd
+    container_name: ubuntu-sshd
+    restart: always
+    ports:
+      - "22:22"
+
+  mysql:
+    image: ir0cn/mysql
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=xThXxsP7mQ0Xufjux
+
+  postgresql:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=xThXxsP7mQ0Xufjux
+      - TZ=Asia/Shanghai
+
+  ubuntu-xrdp:
+    image: danielguerra/ubuntu-xrdp:20.04
+    container_name: ubuntu-xrdp
+    restart: always
+    ports:
+      - "3389:3389"
+    environment:
+      - PASSWORDHASH=$$1$$Y3uRUFAf$$jolBfddgn8QO9wBbR6ChR1
+
+

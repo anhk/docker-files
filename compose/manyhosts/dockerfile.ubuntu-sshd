@@ -1,0 +1,7 @@
+FROM ir0cn/ubuntu
+
+RUN echo "root:xThXxsP7mQ0Xufjux" | chpasswd
+
+WORKDIR /root
+
+

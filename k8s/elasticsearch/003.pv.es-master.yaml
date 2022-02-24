@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-es-master-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 8Gi
+  local:
+    path: /opt/es/es-master-data                # 需要在指定的节点创建相应的目录
+  nodeAffinity:                                 # 指定节点,对节点配置label
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: es-data-master
+          operator: In
+          values:
+          - "true"
+  persistentVolumeReclaimPolicy: Retain         # 回收策略为保留,不会删除数据,即当pod重新调度的时候,数据不会发生变化.
+  storageClassName: local-es-storage

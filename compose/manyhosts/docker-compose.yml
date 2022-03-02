@@ -30,12 +30,21 @@ services:
       - TZ=Asia/Shanghai
 
   ubuntu-xrdp:
-    image: danielguerra/ubuntu-xrdp:20.04
+    image: umis/xubuntu-office-xrdp-desktop:v1.0
     container_name: ubuntu-xrdp
-    restart: always
     ports:
       - "3389:3389"
     environment:
-      - PASSWORDHASH=$$1$$Y3uRUFAf$$jolBfddgn8QO9wBbR6ChR1
+      - "USERNAME:root"
+      - "PASSWORD:xThXxsP7mQ0Xufjux"
+
+#  ubuntu-xrdp:
+#    image: danielguerra/ubuntu-xrdp:20.04
+#    container_name: ubuntu-xrdp
+#    restart: always
+#    ports:
+#      - "3389:3389"
+#    environment:
+#      - PASSWORDHASH=$$1$$1s9TzXEn$$uSL1Gpjy4WZaJKO6ZAX3m1
 
 

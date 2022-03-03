@@ -1,0 +1,12 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: local-es-master-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-es-storage
+  resources:
+    requests:
+      storage: 2Gi

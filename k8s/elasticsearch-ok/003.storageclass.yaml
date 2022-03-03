@@ -1,0 +1,8 @@
+---
+kind: StorageClass 
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: local-es-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer 	# 绑定模式为等待消费者,即当Pod分配到节点后,进行与PV的绑定
+

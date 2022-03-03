@@ -1,0 +1,15 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    elastic-app: elasticsearch
+  name: elasticsearch-discovery
+spec:
+  ports:
+    - port: 9300
+      targetPort: 9300
+  selector:
+    elastic-app: elasticsearch
+    role: master
+

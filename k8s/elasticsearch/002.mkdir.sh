@@ -1,5 +1,7 @@
 #!/bin/bash
 
 
-ssh node01 "mkdir -p /opt/es/es-node-data && mkdir -p /opt/es/es-master-data"
-ssh node02 "mkdir -p /opt/es/es-node-data && mkdir -p /opt/es/es-master-data"
+ssh node01 "rm -fr /export/elasticsearch && mkdir -p /export/elasticsearch/ && chmod 0777 /export/elasticsearch/ "
+ssh node02 "rm -fr /export/elasticsearch && mkdir -p /export/elasticsearch/ && chmod 0777 /export/elasticsearch/ "
+
+

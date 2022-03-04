@@ -2,22 +2,13 @@
 
 
 # 删除label
-kubectl label nodes node01 es-data-node-
-kubectl label nodes node02 es-data-node-
-
-kubectl label nodes node01 es-data-master-
-kubectl label nodes node02 es-data-master-
+kubectl label nodes node01 es-data-
+kubectl label nodes node02 es-data-
 
 # 添加label
-kubectl label nodes node01 es-data-node=true
-kubectl label nodes node02 es-data-node=true
-
-kubectl label nodes node01 es-data-master=true
-kubectl label nodes node02 es-data-master=true
+kubectl label nodes node01 es-data=true
+kubectl label nodes node02 es-data=true
 
 # 查看Label
-echo "es-data-node=true: "
-kubectl get nodes -l "es-data-node=true"
-
-echo "es-data-master=true: "
-kubectl get nodes -l "es-data-master=true"
+echo "es-data=true: "
+kubectl get nodes -l "es-data=true"

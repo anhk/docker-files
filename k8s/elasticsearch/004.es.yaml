@@ -1,28 +1,46 @@
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+spec:
+  ports:
+    - port: 9200
+      targetPort: 9200
+      name: http
+    - port: 9300
+      targetPort: 9300
+      name: tcp
+  selector:
+    app: elasticsearch
+
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  labels:
-    elastic-app: elasticsearch
-  name: elasticsearch-node
+  name: elasticsearch
 spec:
   replicas: 2
-  serviceName: elasticsearch-service
   selector:
     matchLabels:
-      elastic-app: elasticsearch
+      app: elasticsearch
+  serviceName: elasticsearch
   template:
     metadata:
       labels:
-        elastic-app: elasticsearch
+        app: elasticsearch
     spec:
       restartPolicy: Always
       containers:
-        - name: elasticsearch-node
+        - name: elasticsearch
           lifecycle:
             postStart:
               exec:
                 command: ["/bin/bash", "-c", "sysctl -w vm.max_map_count=262144; ulimit -l unlimited;"]
-          image: elasticsearch:7.3.0
+          image: elasticsearch:7.17.1
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: true
@@ -35,26 +53,20 @@ spec:
             - name: cluster.name
               value: "es_cluster"
             - name: node.name
-              value: "elasticsearch-node"
-#            - name: "bootstrap.memory_lock"
-#              value: "true"
-            - name: node.master
-              value: "false"
-            - name: node.data
-              value: "true"
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
             - name: discovery.seed_hosts
-              value: "elasticsearch-discovery"
+              value: "elasticsearch-0.elasticsearch,elasticsearch-1.elasticsearch"
             - name: cluster.initial_master_nodes
-              value: "elasticsearch-master-0,elasticsearch-master-1"
-            - name: node.ingest
-              value: "true"
+              value: "elasticsearch-0,elasticsearch-1"
             - name: ES_JAVA_OPTS
               value: "-Xms256m -Xmx256m"
           volumeMounts:
-            - name: es-node-data
+            - name: es-data
               mountPath: /usr/share/elasticsearch/data
       volumes:
-      - name: es-node-data
+      - name: es-data
         persistentVolumeClaim:
-          claimName: local-es-node-pvc
+          claimName: local-es-pvc
 

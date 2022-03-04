@@ -2,6 +2,7 @@ version: '3'
 
 services:
   guacd:
+    platform: linux/x86_64
     image: guacamole/guacd
     container_name: guacd
     restart: always
@@ -11,7 +12,8 @@ services:
       - GUACD_LOG_LEVEL=debug
 
   mysql:
-    image: ir0cn/mysql
+    platform: linux/x86_64
+    image: mysql:5.7
     container_name: mysql
     restart: always
     ports:

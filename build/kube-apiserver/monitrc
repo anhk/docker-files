@@ -4,8 +4,9 @@ set daemon 5
 #    start program = ""
 
 check process etcd with pidfile /var/run/etcd.pid
-    start program = "/usr/bin/daemonize -a -c / -e /var/log/etcd.err -p /var/run/etcd.pid /usr/bin/etcd --data-dir '/mnt/data/etcd.data'"
+    start program = "/usr/bin/daemonize -a -c / -e /var/log/etcd.err -p /var/run/etcd.pid /usr/bin/etcd --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379 --data-dir '/mnt/data/etcd.data'"
+    #start program = "/usr/bin/daemonize -a -c / -e /var/log/etcd.err -p /var/run/etcd.pid /usr/bin/etcd --data-dir '/mnt/data/etcd.data'"
 
 check process kube-apiserver with pidfile /var/run/kube-apiserver.pid
-    start program = "/usr/bin/daemonize -a -c / -e /var/log/kube-apiserver.err -p /var/run/kube-apiserver.pid /usr/bin/kube-apiserver --etcd-servers=http://127.0.0.1:2379 --bind-address=127.0.0.1 --tls-cert-file=/etc/kubernetes/pki/server.crt --tls-private-key-file=/etc/kubernetes/pki/server.key --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/ca.crt --service-account-signing-key-file=/etc/kubernetes/pki/ca.key --token-auth-file=/etc/kubernetes/pki/token_auth_file"
+    start program = "/usr/bin/daemonize -a -c / -e /var/log/kube-apiserver.err -p /var/run/kube-apiserver.pid /usr/bin/kube-apiserver --etcd-servers=http://127.0.0.1:2379 --bind-address=0.0.0.0 --tls-cert-file=/etc/kubernetes/pki/server.crt --tls-private-key-file=/etc/kubernetes/pki/server.key --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/ca.crt --service-account-signing-key-file=/etc/kubernetes/pki/ca.key --token-auth-file=/etc/kubernetes/pki/token_auth_file"
 

@@ -1,0 +1,21 @@
+version: '3'
+services:
+  openldap:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: 'openldap'
+    restart: always
+    ports:
+      - '1389:1389'
+      - '1636:1636'
+    environment:
+      - LDAP_ROOT=dc=ichilson,dc=com
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=admin
+      - LDAP_USERS=admin
+      - LDAP_PASSWORDS=admin
+    volumes:
+      - ./data:/bitnami/openldap
+      - ./certs:/opt/certs
+      - ./ldif:/opt/ldif

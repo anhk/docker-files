@@ -1,8 +1,11 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 ENV NOTVISIBLE "in users profile"
 
-RUN apt-get update && apt-get install -y openssh-server locales && \
+COPY ./sources.list-arm64 /etc/apt/sources.list-arm64
+
+RUN if [ "$(dpkg --print-architecture)" = "arm64" ]; then cp /etc/apt/sources.list-arm64 /etc/apt/sources.list; fi && \
+    apt-get update && apt-get install -y openssh-server locales && \
     mkdir /var/run/sshd && \
     echo 'root:THEPASSWORDYOUCREATED' | chpasswd && \
     sed -i '/#PermitRootLogin prohibit-password/a PermitRootLogin yes' /etc/ssh/sshd_config && \

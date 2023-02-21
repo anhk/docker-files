@@ -2,10 +2,9 @@ FROM ubuntu:20.04
 
 ENV NOTVISIBLE "in users profile"
 
-COPY ./sources.list-arm64 /etc/apt/sources.list-arm64
+COPY ./entry /bin/entry
 
-RUN if [ "$(dpkg --print-architecture)" = "arm64" ]; then cp /etc/apt/sources.list-arm64 /etc/apt/sources.list; fi && \
-    apt-get update && apt-get install -y openssh-server locales && \
+RUN apt-get update && apt-get install -y openssh-server locales && \
     mkdir /var/run/sshd && \
     echo 'root:THEPASSWORDYOUCREATED' | chpasswd && \
     sed -i '/#PermitRootLogin prohibit-password/a PermitRootLogin yes' /etc/ssh/sshd_config && \
@@ -14,4 +13,5 @@ RUN if [ "$(dpkg --print-architecture)" = "arm64" ]; then cp /etc/apt/sources.li
     echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22
+ENTRYPOINT ["/bin/entry"]
 CMD ["/usr/sbin/sshd", "-D"]

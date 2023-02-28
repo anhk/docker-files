@@ -1,8 +1,10 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
+#ARG TARGETARCH
 ENV NOTVISIBLE "in users profile"
 
 COPY ./entry /bin/entry
+#COPY sources.list-${TARGETARCH} /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y openssh-server locales && \
     mkdir /var/run/sshd && \

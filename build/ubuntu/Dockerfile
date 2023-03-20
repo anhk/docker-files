@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 #ARG TARGETARCH
 ENV NOTVISIBLE "in users profile"
-ENV SSH_PASSWORD
+ENV SSH_PASSWORD ""
 
 COPY ./entry /bin/entry
 #COPY sources.list-${TARGETARCH} /etc/apt/sources.list

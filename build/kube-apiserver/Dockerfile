@@ -23,4 +23,6 @@ COPY --chmod=0600 monitrc /etc/monit/monitrc
 COPY kube/config /root/.kube/config
 COPY kube/pki /etc/kubernetes/pki
 
+VOLUME [ "/mnt/data/etcd.data" ]
+
 CMD [ "monit", "-I" ]

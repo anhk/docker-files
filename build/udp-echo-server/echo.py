@@ -13,7 +13,6 @@ print("Listening on " + server_address + ":" + str(server_port))
 while True:
     data, client_address = sock.recvfrom(4096)
     if data:
-        response = "Client address: %s:%s\nData sent by client:\n%s\nServer:%s\n" % (
+        response = "\"client\": \"%s:%s\", \"data\": \"%s\", \"server\": \"%s\"" % (
                 client_address[0], client_address[1], data, socket.gethostname())
-        print(response)
         sent = sock.sendto(response.encode(), client_address)

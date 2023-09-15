@@ -8,7 +8,7 @@ if [ "$arch" = "x86_64" ]; then
     arch=amd64
 fi
 
-docker build -f Dockerfile \
+docker buildx build -f Dockerfile \
     -t $image:$arch.$version .
 
 docker tag $image:$arch.$version $image:latest

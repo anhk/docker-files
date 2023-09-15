@@ -1,7 +1,7 @@
 FROM ubuntu
 
 ARG TARGETARCH
-ARG UpxBin=bastion-pre.s3.cn-north-1.jdcloud-oss.com/upx-4.0.2-${TARGETARCH}_linux.tar.xz
+ARG UpxBin=https://github.com/upx/upx/releases/download/v4.1.0/upx-4.1.0-${TARGETARCH}_linux.tar.xz
 
 COPY sources.list.${TARGETARCH} /etc/apt/sources.list
 

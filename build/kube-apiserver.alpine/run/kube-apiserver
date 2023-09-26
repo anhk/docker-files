@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec 2>&1
+exec /usr/bin/kube-apiserver --etcd-servers=http://127.0.0.1:2379 --bind-address=0.0.0.0 --tls-cert-file=/etc/kubernetes/pki/server.crt --tls-private-key-file=/etc/kubernetes/pki/server.key --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/ca.crt --service-account-signing-key-file=/etc/kubernetes/pki/ca.key --token-auth-file=/etc/kubernetes/pki/token_auth_file
+

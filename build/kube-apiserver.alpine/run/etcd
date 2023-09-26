@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec 2>&1
+exec /usr/bin/etcd --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379 --data-dir '/mnt/data/etcd.data'
+

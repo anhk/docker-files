@@ -8,7 +8,8 @@ RUN apt update && apt install python3.10 python3-pip -y && \
         dpkg -i /code-server_4.89.1_amd64.deb && \
         rm /code-server_4.89.1_amd64.deb && \
         code-server --install-extension ms-python.python && \
-        ln -s /usr/bin/python3 /usr/bin/python
+        ln -s /usr/bin/python3 /usr/bin/python && \
+        mkdir -p /workspace
 
 WORKDIR /workspace
 

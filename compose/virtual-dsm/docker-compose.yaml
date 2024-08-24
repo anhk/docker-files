@@ -1,0 +1,28 @@
+version: "3"
+services:
+    dsm:
+        container_name: dsm
+        image: vdsm/virtual-dsm:latest
+        environment:
+            DISK_SIZE: "500G"
+        devices:
+            - /dev/kvm
+            - /dev/vhost-net
+        cap_add:
+            - NET_ADMIN
+        ports:
+            - 5000:5000
+            - 111:111 
+            - 111:111/udp
+            - 2049:2049 
+            - 2049:2049/udp 
+            - 32765:32765 
+            - 32765:32765/udp 
+            - 32766:32766 
+            - 32766:32766/udp 
+            - 32767:32767 
+            - 32767:32767/udp 
+        volumes:
+            - /export/dsm-server:/storage
+        restart: on-failure
+        stop_grace_period: 1m

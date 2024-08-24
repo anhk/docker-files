@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-COPY code-server_4.91.1_amd64.deb /
+COPY code-server_4.91.1_amd64.deb entrypoint.sh /
 
 RUN apt update && apt install python3.10 python3-pip -y && \
         pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121 && \
@@ -13,3 +13,4 @@ RUN apt update && apt install python3.10 python3-pip -y && \
 
 WORKDIR /workspace
 
+ENTRYPOINT /entrypoint.sh
